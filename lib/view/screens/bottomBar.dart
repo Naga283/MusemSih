@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/musemDetails.dart';
+import 'package:museum/view/screens/MusemDetailsScreen/qrCodeScanner.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -27,29 +28,8 @@ class _BottomState extends State<Bottom> {
   Widget build(BuildContext context) {
    List<Widget> _widgetOptions = <Widget>[
     MusemDetails(img: widget.img, title: widget.title),
-      SafeArea(
-        child: Column(
-          children: [
-            QrImage(
-            data: widget.data,
-            version: QrVersions.auto,
-            size: 320,
-            gapless: false,
-            errorStateBuilder: (cxt, err) {
-              return Container(
-            child: Center(
-              child: Text(
-                "Uh oh! Something went wrong...",
-                textAlign: TextAlign.center,
-              ),
-            ),
-              );
-            },
-      ),
-      Text("Scan the above QR Code to Get the details of the Museum")
-          ],
-        ),
-      ),
+    QRViewExample(),
+      
     Text("Collection")
   ];
    

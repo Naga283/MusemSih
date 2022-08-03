@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:museum/view/screens/MusemDetailsScreen/3dModel.dart';
+import 'package:museum/view/screens/MusemDetailsScreen/mousePad.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/mustSee.dart';
+import 'package:museum/view/screens/MusemDetailsScreen/QuickTour/quickTour.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+
+import 'Details.dart';
 class MusemDetails extends StatelessWidget {
   final String img;
   final String title;
@@ -91,7 +96,19 @@ class MusemDetails extends StatelessWidget {
               
              MaterialButton(onPressed: (){
               Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MustSeeScreen()));
-             }, child: Text("MustSee"))
+             }, child: Text("MustSee")),
+             MaterialButton(onPressed: (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MonumentsDetails()));
+             },child: Text("Details"),),
+             MaterialButton(onPressed: (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>QuickTour()));
+             },child: Text("Quick Tour"),),
+             MaterialButton(onPressed: (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Model3dScreen()));
+             },child: Text("Model 3d Screen"),),
+             MaterialButton(onPressed: (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MousePad()));
+             },child: Text("Mouse Pad"),),
             
                 ],
               ),

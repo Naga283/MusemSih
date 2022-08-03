@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:museum/model/musemsCard.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/musemDetails.dart';
+import 'package:museum/view/screens/TicketBooking/ticketBooking.dart';
 import 'package:museum/view/screens/bottomBar.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({ Key? key }) : super(key: key);
@@ -36,7 +36,9 @@ class HomeScreen extends StatelessWidget {
                   ),
                  ),
                ),
-               IconButton(onPressed: (){}, icon: Icon(Icons.mic,color: Colors.white,size: 50,))
+               IconButton(onPressed: (){
+                
+               }, icon: Icon(Icons.mic,color: Colors.white,size: 50,))
              ],
            ),
            SizedBox(height: 60,),
@@ -59,7 +61,9 @@ Expanded(
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.black,
         
-        onPressed: (){},child: Icon(Icons.add),
+        onPressed: (){
+          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BookTickets()));
+        },child: Icon(Icons.add),
       shape: RoundedRectangleBorder(
         side: BorderSide(color: Colors.white,width:2.0),
         borderRadius: BorderRadius.circular(10)),
