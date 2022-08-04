@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/musemDetails.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/qrCodeScanner.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
@@ -17,7 +16,7 @@ class Bottom extends StatefulWidget {
 
 class _BottomState extends State<Bottom> {
   
-  var _selectedTab = _SelectedTab.home;
+  
   var _currentIndex = 0;
   void _onItemTapped(int index) {
     setState(() {
@@ -78,4 +77,3 @@ class _BottomState extends State<Bottom> {
   }
   
 }
-enum _SelectedTab { home, favorite, search, person }

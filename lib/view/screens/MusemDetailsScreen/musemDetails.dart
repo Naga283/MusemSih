@@ -3,7 +3,7 @@ import 'package:museum/view/screens/MusemDetailsScreen/3dModel.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/mousePad.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/mustSee.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/QuickTour/quickTour.dart';
-import 'package:qr_flutter/qr_flutter.dart';
+
 
 import 'Details.dart';
 class MusemDetails extends StatelessWidget {
