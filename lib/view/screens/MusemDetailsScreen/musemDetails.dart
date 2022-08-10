@@ -3,27 +3,37 @@ import 'package:museum/view/screens/MusemDetailsScreen/3dModel.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/mousePad.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/mustSee.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/QuickTour/quickTour.dart';
+import 'package:museum/view/screens/MusemDetailsScreen/visitorPolicies/visitorPolicies.dart';
 
 
+import '../../../models/appColor.dart';
+import '../TicketBooking/ticketBooking.dart';
+import '../drawer/musiumDrawer.dart';
 import 'Details.dart';
 class MusemDetails extends StatelessWidget {
+  
   final String img;
   final String title;
   const MusemDetails({ Key? key, required this.img, required this.title }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+     GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
     List<String> images =[
       img,img,img,img
     ];
     return Scaffold(
+      key: _scaffoldkey,
+      endDrawer: Drawer(
+        child: MusiumDrawer(ti: title,),
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
       
             Stack(
-              alignment: Alignment.bottomCenter,
+              // alignment: Alignment.bottomCenter,
               children: [
                 
                   ClipRRect(
@@ -33,7 +43,20 @@ class MusemDetails extends StatelessWidget {
          
                   
                   )),
-                  Text(title,style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 24),)
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Container(
+                    margin: EdgeInsets.only(right: 10),
+                    child: SafeArea(child: IconButton(onPressed: (){
+                _scaffoldkey.currentState!.openEndDrawer()
+                // FirebaseAuth.instance.signOut();
+              ;}, icon: Image(
+                color: AppColors.colText,
+                image: AssetImage("assets/icons/menu.png",))),))),
+                  Positioned(
+                    left: MediaQuery.of(context).size.width * 0.17,
+                    bottom:0,
+                    child: Text(title,style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 24),))
                 ],
             ),
         SizedBox(height: 40,),
@@ -42,7 +65,15 @@ class MusemDetails extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Must-See",style:TextStyle(fontSize: 22,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Must-See",style:TextStyle(fontSize: 22,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic)),
+                      TextButton(onPressed: (){
+                         Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MustSeeScreen()));
+                      }, child: Text("Click here"))
+                    ],
+                  ),
             Text("Perfect for the first time visitors.Explore the museum throughtime collection and curated tours."),
             SizedBox(height: 40,),
            SingleChildScrollView(
@@ -94,21 +125,7 @@ class MusemDetails extends StatelessWidget {
              ),
            ),
               
-             MaterialButton(onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MustSeeScreen()));
-             }, child: Text("MustSee")),
-             MaterialButton(onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MonumentsDetails()));
-             },child: Text("Details"),),
-             MaterialButton(onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>QuickTour()));
-             },child: Text("Quick Tour"),),
-             MaterialButton(onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Model3dScreen()));
-             },child: Text("Model 3d Screen"),),
-             MaterialButton(onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MousePad()));
-             },child: Text("Mouse Pad"),),
+            
             
                 ],
               ),
@@ -119,7 +136,16 @@ class MusemDetails extends StatelessWidget {
           ],
         ),
       ),
-      
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: Colors.black,
+        
+      //   onPressed: (){
+      //     Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BookTickets()));
+      //   },child: Icon(Icons.add),
+      // shape: RoundedRectangleBorder(
+      //   side: BorderSide(color: Colors.white,width:2.0),
+      //   borderRadius: BorderRadius.circular(10)),
+      // ),
     );
   }
 }

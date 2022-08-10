@@ -1,15 +1,32 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:museum/models/appColor.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/musemDetails.dart';
 import 'package:museum/view/screens/TicketBooking/ticketBooking.dart';
 import 'package:museum/view/screens/bottomBar.dart';
-class HomeScreen extends StatelessWidget {
+import 'package:museum/view/screens/drawer/drawer.dart';
+class HomeScreen extends StatefulWidget {
   const HomeScreen({ Key? key }) : super(key: key);
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+   static const _kFontFam = 'MyFlutterApp';
+  static const String _kFontPkg = "";
+  int _counter =0;
+  bool hide = false;
+  @override
   Widget build(BuildContext context) {
+    GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
     return Scaffold(
+      key: _scaffoldState,
      
-      drawer: Drawer(),
+      drawer: const Drawer(
+        child: DrawerScreen()
+      ),
       backgroundColor: Colors.black,
       body: SafeArea(
         
@@ -17,6 +34,12 @@ class HomeScreen extends StatelessWidget {
           children: [
            Row(
              children: [
+              IconButton(onPressed: (){
+                _scaffoldState.currentState!.openDrawer()
+                // FirebaseAuth.instance.signOut();
+              ;}, icon: Image(
+                color: AppColors.colText,
+                image: const AssetImage("assets/icons/hamburger.png",))),
                Flexible(
                  child: TextField(
                   
@@ -25,11 +48,11 @@ class HomeScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(40),
       borderSide: const BorderSide(color: Colors.grey, width: 1.5),
     ),
-                    prefixIcon: Icon(Icons.person,color: Colors.white,),
-                    suffixIcon: Icon(Icons.search,color: Colors.white,),
-                    labelStyle: TextStyle(color: Colors.white),
+                    prefixIcon: const Icon(Icons.person,color: Colors.white,),
+                    suffixIcon: const Icon(Icons.search,color: Colors.white,),
+                    labelStyle: const TextStyle(color: Colors.white),
                     labelText: "Search Museum",
-                    hintStyle: TextStyle(color: Colors.white),
+                    hintStyle: const TextStyle(color: Colors.white),
                   border: OutlineInputBorder(
                     
                     borderRadius: BorderRadius.circular(40))
@@ -38,37 +61,66 @@ class HomeScreen extends StatelessWidget {
                ),
                IconButton(onPressed: (){
                 
-               }, icon: Icon(Icons.mic,color: Colors.white,size: 50,))
+               }, icon: const Icon(Icons.mic,color: Colors.white,size: 50,))
              ],
            ),
-           SizedBox(height: 60,),
+           const SizedBox(height: 60,),
 //Cards View
 Expanded(
   child:   GridView.count(crossAxisCount: 2,
   
   children: [
-    MusemCardWidget(img: "assets/images/NARA.jpg", title: "National Musem in Delhi", clic: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Bottom(img: "assets/images/NARA.jpg", title: "National Musem in Delhi", data: 'This QR Code about the museum which is present in the National Musuem in Delhi',)))),
-    MusemCardWidget(img: "assets/images/2nd.jpg", title: "National Musem in Europe", clic: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Bottom(img: "assets/images/2nd.jpg", title: "National Musem in Europe", data: 'European Museum details of this QrCode',)))),
+    MusemCardWidget(img: "assets/images/NARA.jpg", title: "National Musem in Delhi", clic: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const Bottom(img: "assets/images/NARA.jpg", title: "National Musem in Delhi", data: 'This QR Code about the museum which is present in the National Musuem in Delhi',)))),
+    MusemCardWidget(img: "assets/images/2nd.jpg", title: "National Musem in Europe", clic: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const Bottom(img: "assets/images/2nd.jpg", title: "National Musem in Europe", data: 'European Museum details of this QrCode',)))),
+     
+           
   ],
   
   ),
 )
-
             
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.black,
-        
-        onPressed: (){
-          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BookTickets()));
-        },child: Icon(Icons.add),
-      shape: RoundedRectangleBorder(
-        side: BorderSide(color: Colors.white,width:2.0),
-        borderRadius: BorderRadius.circular(10)),
-      ),
+  floatingActionButton: _getFAB()
     );
+  }
+  Widget _getFAB() {
+        return SpeedDial(
+           
+          animatedIcon: AnimatedIcons.add_event,
+          animatedIconTheme: IconThemeData(size: 22),
+          backgroundColor: Color(0xFF801E48),
+          visible: true,
+          curve: Curves.bounceIn,
+          children: [
+                // FAB 1
+                SpeedDialChild(
+                child: Image.asset("assets/icons/whatsapp.png"),
+                backgroundColor: Color(0xFF801E48),
+                onTap: () { },
+                label: 'Whatsapp',
+                // ignore: prefer_const_constructors
+                labelStyle: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                    fontSize: 16.0),
+                labelBackgroundColor: Color(0xFF801E48)),
+                // FAB 2
+                SpeedDialChild(
+                child: Image.asset("assets/icons/instagram.png"),
+                backgroundColor: Color(0xFF801E48),
+                onTap: () {
+                  
+                },
+                label: 'Instagram',
+                labelStyle: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                    fontSize: 16.0),
+                labelBackgroundColor: Color(0xFF801E48))
+          ],
+        );
   }
 }
 
@@ -102,11 +154,12 @@ class MusemCardWidget extends StatelessWidget {
               Image.asset(img,
               
               fit: BoxFit.cover,),
-              Text(title,style: TextStyle(fontWeight: FontWeight.bold),),
+              Text(title,style: const TextStyle(fontWeight: FontWeight.bold),),
             ],
           ),
         ),
       ),
     );
   }
+  
 }
