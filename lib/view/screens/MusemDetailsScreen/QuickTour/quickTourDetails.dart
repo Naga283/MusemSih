@@ -2,19 +2,21 @@
 
 import 'package:flutter/material.dart';
 class QuickTourDetails extends StatelessWidget {
-  const QuickTourDetails({ Key? key }) : super(key: key);
+  final String img;
+  final String tit;
+  const QuickTourDetails({ Key? key, required this.img, required this.tit }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children:[
-          Image.asset("assets/images/NARA.jpg",),
+          Image.network(img,),
           SizedBox(height: 20,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text("Buffaloes",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,),),
+              Text(tit,style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,),),
               IconButton(onPressed: (){}, icon: Icon(Icons.play_arrow,size: 24,)),
               IconButton(onPressed: (){}, icon: Icon(Icons.share,size: 24,)),
             ],

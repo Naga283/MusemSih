@@ -1,3 +1,7 @@
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
+
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/3dModel.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/mousePad.dart';
@@ -10,22 +14,34 @@ import '../../../models/appColor.dart';
 import '../TicketBooking/ticketBooking.dart';
 import '../drawer/musiumDrawer.dart';
 import 'Details.dart';
-class MusemDetails extends StatelessWidget {
+class MusemDetails extends StatefulWidget {
   
   final String img;
   final String title;
   const MusemDetails({ Key? key, required this.img, required this.title }) : super(key: key);
 
   @override
+  State<MusemDetails> createState() => _MusemDetailsState();
+}
+
+class _MusemDetailsState extends State<MusemDetails> {
+  @override
   Widget build(BuildContext context) {
      GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
+    
+    
     List<String> images =[
-      img,img,img,img
+      widget.img,widget.img,widget.img,widget.img
     ];
+    var dataBase = FirebaseDatabase.instance.ref("MustSee").child(widget.title);
+    var dataBaseEvent = FirebaseDatabase.instance.ref("Events").child(widget.title);
+    Map r={};
+    Map rEvent = {};
+   
     return Scaffold(
       key: _scaffoldkey,
       endDrawer: Drawer(
-        child: MusiumDrawer(ti: title,),
+        child: MusiumDrawer(ti: widget.title,),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -39,7 +55,7 @@ class MusemDetails extends StatelessWidget {
                   ClipRRect(
                     
                   borderRadius:  BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
-                  child: Image.asset(img,
+                  child: Image.network(widget.img,
          
                   
                   )),
@@ -56,7 +72,7 @@ class MusemDetails extends StatelessWidget {
                   Positioned(
                     left: MediaQuery.of(context).size.width * 0.17,
                     bottom:0,
-                    child: Text(title,style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 24),))
+                    child: Text(widget.title,style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 24),))
                 ],
             ),
         SizedBox(height: 40,),
@@ -70,60 +86,38 @@ class MusemDetails extends StatelessWidget {
                     children: [
                       Text("Must-See",style:TextStyle(fontSize: 22,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic)),
                       TextButton(onPressed: (){
-                         Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MustSeeScreen()));
+                         Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MustSeeScreen(tit: widget.title,)));
                       }, child: Text("Click here"))
                     ],
                   ),
             Text("Perfect for the first time visitors.Explore the museum throughtime collection and curated tours."),
             SizedBox(height: 40,),
-           SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-             child: Row(
-              children: [
-                Image.asset(img,height: 100,),
-                SizedBox(width: 20,),
-                Image.asset(img,height:100),
-                 SizedBox(width: 20,),
-                Image.asset(img,height: 100,)
-              ],
-             ),
-           ),
+          // 
+          FirebaseAnimatedList(
+        shrinkWrap: true,
+        query: dataBase, itemBuilder: (BuildContext context,DataSnapshot dataSnapshot,Animation animation,int index){
+          var res =dataSnapshot.value as Map; 
+          r = res;
+        //  print(r);
+         
+      return  MustSeeMusiumScreen(widget: widget, r: r,);
+      }),
+
            SizedBox(height: 20,),
            Text("Events & Exhibition",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 26),),
            Text("ongoing"),
            SizedBox(height: 10,),
-            SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-             child: Row(
-              children: [
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Image.asset(img,height: 130,width: 230,
-                    fit: BoxFit.fill,))),
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Image.asset(img,height: 130,width: 230,
-                    fit: BoxFit.fill,))),
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Image.asset(img,height: 130,width: 230,
-                    fit: BoxFit.fill,))),
-                
-              ],
-             ),
-           ),
+           //Events DataBase
+            FirebaseAnimatedList(
+        shrinkWrap: true,
+        query: dataBaseEvent, itemBuilder: (BuildContext context,DataSnapshot dataSnapshot,Animation animation,int index){
+          var res =dataSnapshot.value as Map; 
+          rEvent = res;
+        //  print(r);
+         
+           
+      return EventsWidget(widget: widget, rE: rEvent,);
+      }),
               
             
             
@@ -136,16 +130,71 @@ class MusemDetails extends StatelessWidget {
           ],
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: Colors.black,
-        
-      //   onPressed: (){
-      //     Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BookTickets()));
-      //   },child: Icon(Icons.add),
-      // shape: RoundedRectangleBorder(
-      //   side: BorderSide(color: Colors.white,width:2.0),
-      //   borderRadius: BorderRadius.circular(10)),
-      // ),
+  
+    );
+  }
+}
+
+class EventsWidget extends StatelessWidget {
+  const EventsWidget({
+    Key? key,
+    required this.widget, required this.rE,
+    
+  }) : super(key: key);
+
+  final MusemDetails widget;
+  final Map rE;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 100,
+      child: StreamBuilder(
+        builder: (context,snapshot) {
+          return !snapshot.hasData?ListView.builder(
+            itemCount: rE.length>3?3:rE.length,
+             scrollDirection: Axis.horizontal,
+            itemBuilder: (context,index) {
+              return Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.network(rE["img"],height: 130,width: 230,
+                  fit: BoxFit.fill,)));
+            }
+          ):CircularProgressIndicator();
+        }
+      ),
+    );
+  }
+}
+
+class MustSeeMusiumScreen extends StatelessWidget {
+  final Map r;
+  const MustSeeMusiumScreen({
+    Key? key,
+    required this.widget, required this.r,
+  }) : super(key: key);
+
+  final MusemDetails widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+     height: 100,
+      child: StreamBuilder(
+        builder: (context,snapshot) {
+          return ListView.builder(
+           itemCount: r.length>3?3:r.length,
+           scrollDirection: Axis.horizontal,
+            itemBuilder: (context,index) {
+              return Image.network(r["img"],height: 100,);
+            }
+          );
+        }
+      ),
     );
   }
 }

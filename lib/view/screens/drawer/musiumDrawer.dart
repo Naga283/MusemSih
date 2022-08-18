@@ -1,4 +1,8 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../MusemDetailsScreen/3dModel.dart';
 import '../MusemDetailsScreen/Details.dart';
@@ -18,8 +22,10 @@ class MusiumDrawer extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height:40),
+          Icon(FontAwesomeIcons.museum,size: 100,),
+          SizedBox(height: 20,),
           Text(ti,style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
-          SizedBox(height: 30,),
+          SizedBox(height: 20,),
          Divider(thickness: 3,),
          SizedBox(height: 30,),
           DetailsOfMusiumDrawer(tit: "Book Tickets", tap: (){
@@ -29,14 +35,17 @@ class MusiumDrawer extends StatelessWidget {
              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MonumentsDetails()));
           }, ic: Icon(Icons.add)),
           DetailsOfMusiumDrawer(tit: "Quick Tour", tap: (){
-             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>QuickTour()));
+             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>QuickTourScreen(tit: '',)));
           }, ic: Icon(Icons.tour)),
           DetailsOfMusiumDrawer(tit: "Model 3d", tap: (){
              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Model3dScreen()));
           }, ic: Icon(Icons.add)),
           DetailsOfMusiumDrawer(tit: "Mouse Pad", tap: (){
              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MousePad()));
-          }, ic: Icon(Icons.add)),
+          }, ic: Icon(FontAwesomeIcons.airbnb)),
+          DetailsOfMusiumDrawer(tit: "Directions", tap: (){
+   launch('https://www.google.com/maps/search/?api=1&query=37.4220041,-122.0862462');
+          }, ic: Icon(FontAwesomeIcons.directions)),
           DetailsOfMusiumDrawer(tit: "Visitor Policies", tap: (){
              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>VisitorPolicies()));
           }, ic: Icon(Icons.policy)),

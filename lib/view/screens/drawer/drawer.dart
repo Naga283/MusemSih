@@ -1,9 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:museum/view/screens/BookingHistory/bookingHistory.dart';
-class DrawerScreen extends StatelessWidget {
+import 'package:museum/view/screens/BookingHistory/ticketsBooked.dart';
+class DrawerScreen extends StatefulWidget {
   const DrawerScreen({Key? key}) : super(key: key);
 
+  @override
+  State<DrawerScreen> createState() => _DrawerScreenState();
+}
+
+class _DrawerScreenState extends State<DrawerScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -15,7 +21,10 @@ class DrawerScreen extends StatelessWidget {
             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BookingHistory()));
           }, ic: Icon(Icons.book),),
           DetailsOfDrawer(tit: 'Logout', tap: () { 
+            setState(() {
+              
             FirebaseAuth.instance.signOut();
+            });
            }, ic: Icon(Icons.logout),)
         ],
       ),
@@ -42,7 +51,7 @@ class DetailsOfDrawer extends StatelessWidget {
           child: Row(
             children: [
               ic,
-              Text(tit,style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+              Text(tit,style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,fontFamily: "Oswald"),),
             ],
           ),
         ),

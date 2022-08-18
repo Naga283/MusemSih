@@ -4,6 +4,7 @@ import 'package:museum/view/screens/MusemDetailsScreen/musemDetails.dart';
 import 'package:museum/view/screens/homeScreen.dart';
 import 'package:museum/view/screens/phoneAuth/NewHomeScreen.dart';
 import 'package:museum/view/screens/phoneAuth/startPage.dart';
+import 'package:museum/view/screens/practice/database.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -15,9 +16,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(fontFamily: "Inria"),
       debugShowCheckedModeBanner: false,
       routes: {
         '/' :(context) => InitialiserWidget(),
+        // '/' :(context) => RetreiveData(),
         // '/musemDetails':(context) => MusemDetails(img: '', title: '',)
       },
       
