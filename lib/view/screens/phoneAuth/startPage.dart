@@ -7,6 +7,8 @@ import '../homeScreen.dart';
 import 'NewHomeScreen.dart';
 
 class InitialiserWidget extends StatefulWidget {
+  const InitialiserWidget({Key? key}) : super(key: key);
+
   @override
   _InitialiserWidgetState createState() => _InitialiserWidgetState();
 }

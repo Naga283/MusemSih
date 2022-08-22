@@ -13,7 +13,7 @@ class QuickTourScreen extends StatefulWidget {
 }
 
 class _QuickTourScreenState extends State<QuickTourScreen> {
-  var val;
+ 
   
   // final dref = FirebaseDatabase.instance.ref();
   //   late DatabaseReference databaseReference ;
@@ -35,7 +35,7 @@ class _QuickTourScreenState extends State<QuickTourScreen> {
   // }
   @override
   Widget build(BuildContext context) {
-   var dataBase = FirebaseDatabase.instance.ref("MustSee").child("taj");
+   var dataBase = FirebaseDatabase.instance.ref("QuickTour").child(widget.tit);
     Map r={};
     return Scaffold(
        appBar: AppBar(
@@ -73,41 +73,42 @@ class QuickTour extends StatelessWidget {
               itemCount: r.length,
               itemBuilder: (BuildContext context, int index) {  
             return GestureDetector(
-              onTap: (() => Navigator.of(context).push(MaterialPageRoute(builder: (context)=>QuickTourDetails(img: r["img"], tit: r["aname"],)))),
+              onTap: (() => Navigator.of(context).push(MaterialPageRoute(builder: (context)=>QuickTourDetails(img: r["img"], tit: r["aname"], artist: r['artist'], des: r['desc'], loc: r['location'],)))),
               child: Card(
+                // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                   color: Colors.black,
-                  child: Row(
+                  child: Column(
                     children: [
-                      Image.network(r["img"],height: 100,),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(r["aname"],style: TextStyle(color: Colors.yellow,fontWeight: FontWeight.bold,fontSize: 20),),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text("Artist",style: TextStyle(color: Colors.white),),
-                                Text(r["artist"],style: TextStyle(color: Colors.white),)
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text("Location:",style: TextStyle(color: Colors.white),),
-                                Text(r["location"],style: TextStyle(color: Colors.white),)
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text("Description",style: TextStyle(color: Colors.white),),
-                                Text(r["des"]??"",style: TextStyle(color: Colors.white),)
-                              ],
-                            ),
-                          ],
-                        ),
-                      )
+                      Row(
+                        children: [
+                          Image.network(r["img"],height: 100,),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            // ignore: prefer_const_literals_to_create_immutables
+                            children: [
+                              Column(
+                        
+                        children: [
+                          Text(r["aname"],style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
+                        ],
+                      ),
+                              Text("Artist",style: TextStyle(color: Colors.white),),
+                              Text("Location:",style: TextStyle(color: Colors.white),),
+                              Text("Description",style: TextStyle(color: Colors.white),),
+                            ],
+                          ),
+                          SizedBox(width: 10,),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            // ignore: prefer_const_literals_to_create_immutables
+                            children: [
+                              Text(r["artist"],style: TextStyle(color: Colors.white),),
+                              Text(r["location"],style: TextStyle(color: Colors.white),),
+                              // Text(r["desc"],style: TextStyle(color: Colors.white),),
+                            ],
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, deprecated_member_use
+
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,6 +14,7 @@ import 'package:museum/view/screens/bottomBar.dart';
 import 'package:museum/view/screens/drawer/drawer.dart';
 import 'package:museum/view/screens/practice/database.dart';
 import 'package:museum/view/screens/practice/mustseeDatabase.dart';
+import 'package:museum/view/textTOSpeech/texttoSpeech.dart';
 import 'package:url_launcher/url_launcher.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({ Key? key }) : super(key: key);
@@ -21,9 +24,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-   static const _kFontFam = 'MyFlutterApp';
-  static const String _kFontPkg = "";
-  int _counter =0;
+  
   bool hide = false;
   @override
   Widget build(BuildContext context) {
@@ -75,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
 //Cards View
 
  
-      Expanded(child: RetreiveData())
+      Expanded(child: RetreiveData()),
   //  Expanded(
   //    child: GridView.count(crossAxisCount: 2,
      
@@ -98,8 +99,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
   Widget _getFAB() {
     var whatsapp ="+917095631716";
-    var whatsappURl_android = "whatsapp://send?phone="+whatsapp+"&text=hello";
-  var whatappURL_ios ="https://wa.me/$whatsapp?text=${Uri.parse("hello")}";
+    var whatsappURlAndroid = "whatsapp://send?phone="+whatsapp+"&text=hello";
+  var whatappURLIos ="https://wa.me/$whatsapp?text=${Uri.parse("hello")}";
         return SpeedDial(
           
           animatedIcon: AnimatedIcons.add_event,
@@ -116,21 +117,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   // launch("whatsapp://send?phone="+whatsapp+"&text=hello");
                     if(Platform.isIOS){
     // for iOS phone only
-    if( await canLaunch(whatappURL_ios)){
-       await launch(whatappURL_ios, forceSafariVC: false);
+    if( await canLaunch(whatappURLIos)){
+       await launch(whatappURLIos, forceSafariVC: false);
     }else{
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: new Text("whatsapp no installed")));
+          SnackBar(content: Text("whatsapp no installed")));
 
     }
 
   }else{
     // android , web
-    if( await canLaunch(whatsappURl_android)){
-      await launch(whatsappURl_android);
+    if( await canLaunch(whatsappURlAndroid)){
+      await launch(whatsappURlAndroid);
     }else{
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: new Text("whatsapp no installed")));
+          SnackBar(content: Text("whatsapp no installed")));
 
     }
 

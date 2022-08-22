@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/musemDetails.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/qrCodeScanner.dart';
@@ -8,7 +10,9 @@ class Bottom extends StatefulWidget {
   final String img;
   final String title;
   final String data;
-  const Bottom({ Key? key, required this.img, required this.title, required this.data,}) : super(key: key);
+  final String lon;
+  final String lat;
+  const Bottom({ Key? key, required this.img, required this.title, required this.data, required this.lon, required this.lat,}) : super(key: key);
  
   @override
   State<Bottom> createState() => _BottomState();
@@ -26,7 +30,7 @@ class _BottomState extends State<Bottom> {
   @override
   Widget build(BuildContext context) {
    List<Widget> _widgetOptions = <Widget>[
-    MusemDetails(img: widget.img, title: widget.title),
+    MusemDetails(img: widget.img, title: widget.title, lat: widget.lat, lon: widget.lon,),
     QRViewExample(),
       
     Text("Collection")

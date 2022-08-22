@@ -1,4 +1,6 @@
 
+// ignore_for_file: prefer_const_constructors
+
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -217,6 +219,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   hintStyle: TextStyle(color: Color(0XFFC6B26A))
                   ),
         ),
+       
         SizedBox(
           height: 25,
         ),
@@ -226,6 +229,7 @@ class _LoginScreenState extends State<LoginScreen> {
             minimumSize: Size(150, 50),
             primary: Color(0XFF353131),
             shape: RoundedRectangleBorder(
+              
               side: BorderSide(
                 style: BorderStyle.solid,
                 width: 2.0,

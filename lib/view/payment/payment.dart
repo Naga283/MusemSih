@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
@@ -48,6 +50,7 @@ class _PaymentState extends State<Payment> {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    // ignore: prefer_const_literals_to_create_immutables
                     children: [
                       Text("Tickets Confirmed"),
                     ],

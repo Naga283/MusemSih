@@ -1,5 +1,7 @@
 
 
+// ignore_for_file: prefer_const_constructors
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -87,7 +89,7 @@ class _BookTicketsState extends State<BookTickets> {
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
                         Text("Ticket -${index+1}",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
-                        // ignore: prefer_const_constructors
+                        
                         TicketTextFields(tit: widget.name, tap: () {  }, read: true, cont: musiname,),
                         SizedBox(height: 20,),
                         TicketTextFields(tit: 'Name:', tap: () {  }, read: false, cont: _controllers[index],),
@@ -155,6 +157,7 @@ class _BookTicketsState extends State<BookTickets> {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    // ignore: prefer_const_literals_to_create_immutables
                     children: [
                       Text("Tickets Confirmed"),
                     ],
@@ -188,13 +191,13 @@ class TicketTextFields extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: prefer_const_constructors
+    
     return TextField(
       
       controller: cont,
       readOnly: read,
       onTap: tap,
-      // ignore: prefer_const_constructors
+     
       decoration: InputDecoration(
         fillColor: Colors.grey,
         border: InputBorder.none,

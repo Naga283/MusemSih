@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:museum/models/appColor.dart';
 class VisitorPolicies extends StatelessWidget {
@@ -6,6 +8,7 @@ class VisitorPolicies extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     var styleText = TextStyle(
       fontSize: 18,fontWeight: FontWeight.bold
     );

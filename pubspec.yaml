@@ -52,6 +52,8 @@ dependencies:
   firebase_database: ^9.1.1
   qr_flutter: ^4.0.0
   font_awesome_flutter: ^10.1.0
+  flutter_tts: ^3.5.1
+  text_to_speech: ^0.2.3
 
 dev_dependencies:
   flutter_test:

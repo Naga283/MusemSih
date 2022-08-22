@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 class MonumentsDetails extends StatelessWidget {
   const MonumentsDetails({Key? key}) : super(key: key);
@@ -27,6 +29,7 @@ class MonumentsDetails extends StatelessWidget {
           SizedBox(height: 50,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            // ignore: prefer_const_literals_to_create_immutables
             children: [
                Text("Medium:",style: TextStyle(fontSize: 26,fontWeight: FontWeight.bold,color: Colors.yellow),),
                Text("Size:",style: TextStyle(fontSize: 26,fontWeight: FontWeight.bold,color: Colors.yellow),),
@@ -35,6 +38,7 @@ class MonumentsDetails extends StatelessWidget {
           ),
           Row(
              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            // ignore: prefer_const_literals_to_create_immutables
             children: [
                Text("Marble",style: TextStyle(fontSize: 26,fontWeight: FontWeight.bold,color: Colors.yellow),),
                Text("30 X 40 X 122",style: TextStyle(fontSize: 26,fontWeight: FontWeight.bold,color: Colors.yellow),),

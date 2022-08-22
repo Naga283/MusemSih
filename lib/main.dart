@@ -1,10 +1,9 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:museum/view/screens/MusemDetailsScreen/musemDetails.dart';
-import 'package:museum/view/screens/homeScreen.dart';
-import 'package:museum/view/screens/phoneAuth/NewHomeScreen.dart';
 import 'package:museum/view/screens/phoneAuth/startPage.dart';
-import 'package:museum/view/screens/practice/database.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

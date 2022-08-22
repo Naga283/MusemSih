@@ -1,8 +1,7 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, prefer_const_constructors
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:museum/models/appColor.dart';
@@ -50,8 +49,9 @@ return ListView.builder(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            // ignore: prefer_const_literals_to_create_immutables
             children: [
-              const Icon(FontAwesomeIcons.museum,size: 50,color: Color.fromARGB(255, 235, 119, 159),),
+              Icon(FontAwesomeIcons.museum,size: 50,color: Color.fromARGB(255, 235, 119, 159),),
             ],
           ),
           const SizedBox(height: 20,),
@@ -122,7 +122,7 @@ return ListView.builder(
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text("BookingId : ",style: const TextStyle(fontSize: 16,),),
+              const Text("BookingId : ",style: TextStyle(fontSize: 16,),),
               Text(snapshot.data?.docs[index]["id"]??"",style: const TextStyle(fontSize: 16,),),
             ],
           ),

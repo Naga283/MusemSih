@@ -8,9 +8,11 @@ import 'package:museum/view/screens/MusemDetailsScreen/mousePad.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/mustSee.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/QuickTour/quickTour.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/visitorPolicies/visitorPolicies.dart';
+import 'package:text_to_speech/text_to_speech.dart';
 
 
 import '../../../models/appColor.dart';
+import '../../textTOSpeech/texttoSpeech.dart';
 import '../TicketBooking/ticketBooking.dart';
 import '../drawer/musiumDrawer.dart';
 import 'Details.dart';
@@ -18,7 +20,9 @@ class MusemDetails extends StatefulWidget {
   
   final String img;
   final String title;
-  const MusemDetails({ Key? key, required this.img, required this.title }) : super(key: key);
+  final String lat;
+  final String lon;
+  const MusemDetails({ Key? key, required this.img, required this.title, required this.lat, required this.lon }) : super(key: key);
 
   @override
   State<MusemDetails> createState() => _MusemDetailsState();
@@ -29,7 +33,7 @@ class _MusemDetailsState extends State<MusemDetails> {
   Widget build(BuildContext context) {
      GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
     
-    
+      
     List<String> images =[
       widget.img,widget.img,widget.img,widget.img
     ];
@@ -41,7 +45,7 @@ class _MusemDetailsState extends State<MusemDetails> {
     return Scaffold(
       key: _scaffoldkey,
       endDrawer: Drawer(
-        child: MusiumDrawer(ti: widget.title,),
+        child: MusiumDrawer(ti: widget.title, lat: widget.lat, lon: widget.lon,),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -100,7 +104,7 @@ class _MusemDetailsState extends State<MusemDetails> {
           r = res;
         //  print(r);
          
-      return  MustSeeMusiumScreen(widget: widget, r: r,);
+      return  MustSeeMusiumScreen( r: r,);
       }),
 
            SizedBox(height: 20,),
@@ -119,7 +123,13 @@ class _MusemDetailsState extends State<MusemDetails> {
       return EventsWidget(widget: widget, rE: rEvent,);
       }),
               
-            
+            GestureDetector(
+  onTap: (){
+    
+
+    // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>TextToSpeechWidget()));
+  },
+  child: Text("Speech")),
             
                 ],
               ),
@@ -164,7 +174,9 @@ class EventsWidget extends StatelessWidget {
                   child: Image.network(rE["img"],height: 130,width: 230,
                   fit: BoxFit.fill,)));
             }
-          ):CircularProgressIndicator();
+          ):Center(
+            child: Text("No data"),
+          );
         }
       ),
     );
@@ -175,10 +187,10 @@ class MustSeeMusiumScreen extends StatelessWidget {
   final Map r;
   const MustSeeMusiumScreen({
     Key? key,
-    required this.widget, required this.r,
+     required this.r,
   }) : super(key: key);
 
-  final MusemDetails widget;
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -187,10 +199,13 @@ class MustSeeMusiumScreen extends StatelessWidget {
       child: StreamBuilder(
         builder: (context,snapshot) {
           return ListView.builder(
-           itemCount: r.length>3?3:r.length,
+            physics: ClampingScrollPhysics(),
+           itemCount: r.length,
            scrollDirection: Axis.horizontal,
             itemBuilder: (context,index) {
-              return Image.network(r["img"],height: 100,);
+              return Container(
+                margin: EdgeInsets.only(left: 10),
+                child: Image.network(r["img"],height: 100,));
             }
           );
         }

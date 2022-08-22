@@ -1,6 +1,6 @@
 
 
-// ignore_for_file: prefer_null_aware_operators
+// ignore_for_file: prefer_null_aware_operators, prefer_const_constructors
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
@@ -18,7 +18,7 @@ class RetreiveData extends StatefulWidget {
 }
 
 class _RetreiveDataState extends State<RetreiveData> {
-  var val;
+  
   final dref = FirebaseDatabase.instance.ref("Museums");
     late DatabaseReference databaseReference ;
     Map r={};
@@ -85,45 +85,44 @@ class _DataRetrievalState extends State<DataRetrieval> {
       builder: (context,databaseEvent){
    
        
-    return Container(
-      height: MediaQuery.of(context).size.height *0.3,
-      
-      child: GridView.builder(
-        // physics: ScrollPhysics(),
-                  
-                  shrinkWrap: true,
-        itemCount: 1,
-        itemBuilder: (context,index) {
-          return GestureDetector(
-            onTap: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Bottom(img: "${widget.r["img"]}", title: "${widget.r["name"]}", data: 'European Museum details of this QrCode',)));
-            },
-            child: Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                      color: Colors.blue,
-                      width: 3.0
-                    )
-                  ),
-              child: Column(
-                children: [
-                   Image.network("${widget.r["img"]}",
-                    fit: BoxFit.cover,
-                   ),
-                      
-                      
-                  Text("${widget.r["name"]}"),
-                ],
+    return ListView.builder(
+      // physics: ScrollPhysics(),
+                
+                shrinkWrap: true,
+      itemCount: 1,
+      itemBuilder: (context,index) {
+        return GestureDetector(
+          onTap: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Bottom(img: "${widget.r["img"]}", title: "${widget.r["name"]}", data: 'European Museum details of this QrCode', lat: '${widget.r["lat"]}', lon: '${widget.r["lon"]}',)));
+          },
+          child: Card(
+            
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20)
               ),
-            )),
-          );
-        }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-      ),
+              child: Container(
+                
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: Colors.blue,
+                    width: 3.0
+                  )
+                ),
+            child: Column(
+              children: [
+                 Image.network("${widget.r["img"]}",
+                  fit: BoxFit.cover,
+                 ),
+                    
+                    
+                Text("${widget.r["name"]}"),
+              ],
+            ),
+          )),
+        );
+      }, 
+      // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
     );
       
       // return Container(

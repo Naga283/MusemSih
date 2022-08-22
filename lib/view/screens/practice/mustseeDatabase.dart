@@ -1,6 +1,6 @@
 
 
-// ignore_for_file: prefer_null_aware_operators
+// ignore_for_file: prefer_null_aware_operators, prefer_const_constructors, deprecated_member_use, sized_box_for_whitespace
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
@@ -88,7 +88,7 @@ class _DataRetrievalState extends State<DataRetrieval> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: ListView.builder(
-           itemCount:  widget.r.length !=0 ? widget.r.length:0,
+           itemCount:  widget.r.isNotEmpty ? widget.r.length:0,
           itemBuilder: (BuildContext context,int index) {
          
           return Card(
@@ -106,6 +106,7 @@ class _DataRetrievalState extends State<DataRetrieval> {
                   padding: EdgeInsets.only(bottom: 20,),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    // ignore: prefer_const_literals_to_create_immutables
                     children: [
                     SizedBox(height: 10,),
                
