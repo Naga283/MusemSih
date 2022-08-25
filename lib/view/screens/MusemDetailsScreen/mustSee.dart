@@ -87,7 +87,7 @@ class _DataMustScreenState extends State<DataMustScreen> {
             height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
             child: ListView.builder(
-              itemCount:  widget.r.length,
+              itemCount:  1,
               itemBuilder: (context,index) {
                 return Card(
                   color: Colors.black,
@@ -100,7 +100,7 @@ class _DataMustScreenState extends State<DataMustScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(widget.r["aname"],style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
+                          Flexible(child: Text(widget.r["aname"],style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),)),
                         ],
                       ),
                       Row(

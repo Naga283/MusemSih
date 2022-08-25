@@ -52,7 +52,7 @@ class DetailsOfDrawer extends StatelessWidget {
           child: Row(
             children: [
               ic,
-              Text(tit,style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,fontFamily: "Oswald"),),
+              Text(tit,style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,),),
             ],
           ),
         ),

@@ -1,20 +1,22 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:museum/models/appColor.dart';
+import 'package:museum/view/screens/Notes/NotesDetails.dart';
 
 
 import 'addDetails.dart';
-import 'feynman technique.dart';
-class FeymanTechniqueFirstPage extends StatelessWidget {
-  const FeymanTechniqueFirstPage({ Key? key }) : super(key: key);
+
+class NotesFirstPage extends StatelessWidget {
+  const NotesFirstPage({ Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       backgroundColor: Color(0xff66c4d0),
+       backgroundColor: AppColors.appBarColor,
       appBar: AppBar(title: Text('Notes',style: TextStyle(fontWeight: FontWeight.bold),),
        
-       backgroundColor: Color(0xff66c4d0),
+       backgroundColor: AppColors.appBarColor,
        elevation: 0,
       ),
       body: SingleChildScrollView(
@@ -29,7 +31,7 @@ class FeymanTechniqueFirstPage extends StatelessWidget {
               children: [
                 GestureDetector(
               onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>FeyManTechnique()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>NotesDetails()));
               },
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 40,vertical: 20),

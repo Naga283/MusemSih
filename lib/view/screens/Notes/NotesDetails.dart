@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -6,7 +8,7 @@ import 'package:flutter/material.dart';
 
 import 'editDetails.dart';
 
-class FeyManTechnique extends StatelessWidget {
+class NotesDetails extends StatelessWidget {
   var firebaseUser= FirebaseAuth.instance.currentUser;
  // CollectionReference ref  = ;
   List<Color> myColors = [
@@ -50,6 +52,7 @@ class FeyManTechnique extends StatelessWidget {
                         child: PopupMenuButton(
           icon: Icon(Icons.more_vert,color: Colors.white), // add this line
           itemBuilder: (_) => <PopupMenuItem<String>>[
+            // ignore: unnecessary_new
             new PopupMenuItem<String>(
               child: GestureDetector(
                 onTap: (){

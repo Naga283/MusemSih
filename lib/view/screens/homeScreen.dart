@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
 //Cards View
 
  
-      Expanded(child: RetreiveData()),
+      Flexible(child: RetreiveData()),
   //  Expanded(
   //    child: GridView.count(crossAxisCount: 2,
      

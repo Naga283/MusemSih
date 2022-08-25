@@ -3,6 +3,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
+import 'package:museum/view/panaroma/3dScreen.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/3dModel.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/mousePad.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/mustSee.dart';
@@ -102,6 +103,7 @@ class _MusemDetailsState extends State<MusemDetails> {
         query: dataBase, itemBuilder: (BuildContext context,DataSnapshot dataSnapshot,Animation animation,int index){
           var res =dataSnapshot.value as Map; 
           r = res;
+          print(r.keys);
         //  print(r);
          
       return  MustSeeMusiumScreen( r: r,);
@@ -123,13 +125,7 @@ class _MusemDetailsState extends State<MusemDetails> {
       return EventsWidget(widget: widget, rE: rEvent,);
       }),
               
-            GestureDetector(
-  onTap: (){
-    
-
-    // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>TextToSpeechWidget()));
-  },
-  child: Text("Speech")),
+          
             
                 ],
               ),
@@ -194,21 +190,69 @@ class MustSeeMusiumScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-     height: 100,
-      child: StreamBuilder(
-        builder: (context,snapshot) {
-          return ListView.builder(
-            physics: ClampingScrollPhysics(),
-           itemCount: r.length,
-           scrollDirection: Axis.horizontal,
-            itemBuilder: (context,index) {
-              return Container(
-                margin: EdgeInsets.only(left: 10),
-                child: Image.network(r["img"],height: 100,));
-            }
-          );
-        }
+    return GestureDetector(
+      onTap: (){
+        // Navigator.of(context).push(MaterialPageRoute(builder: (context)=> MonumentsDetails(img: r["img"], des: r["desc"], tit: r["aname"],)));
+      },
+      child: Container(
+       height: 100,
+        child: StreamBuilder(
+          builder: (context,snapshot) {
+            return StreamBuilder(
+    //  stream: FirebaseDatabase.instance.ref("Museums").onValue,
+      builder: (context,databaseEvent){
+   
+       
+   
+        return GestureDetector(
+          onTap: (){
+             Navigator.of(context).push(MaterialPageRoute(builder: (context)=> MonumentsDetails(img: r["img"], des: r["desc"], tit: r["aname"],)));
+            
+          },
+          child: SizedBox(
+            width: 100,
+            
+            child: Card(
+        
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)
+                ),
+                child: Container(
+                  
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: Color(0XFFC6B26A),
+                      width: 3.0
+                    )
+                  ),
+              child: Row(
+                children: [
+                   ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                     child: Image.network("${r["img"]}",
+                      fit: BoxFit.cover,
+                      
+                      width: MediaQuery.of(context).size.width * 0.5,
+                   
+                     ),
+                   ),
+                      
+                    SizedBox(width: 6,),  
+                  Flexible(child: Text("${r["aname"]}",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)),
+                ],
+              ),
+            )),
+          ),
+        );
+      }, 
+      // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+    );
+    
+  
+  }
+           
+        ),
       ),
     );
   }

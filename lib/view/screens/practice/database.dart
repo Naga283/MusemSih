@@ -6,6 +6,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:museum/models/appColor.dart';
 
 import '../bottomBar.dart';
 
@@ -42,7 +43,7 @@ class _RetreiveDataState extends State<RetreiveData> {
   //  print(showData());
     
     return Scaffold(
-     
+     backgroundColor: AppColors.appBarColor,
       body: FirebaseAnimatedList(
         shrinkWrap: true,
         query: databaseReference, itemBuilder: (BuildContext context,DataSnapshot dataSnapshot,Animation animation,int index){
@@ -85,41 +86,45 @@ class _DataRetrievalState extends State<DataRetrieval> {
       builder: (context,databaseEvent){
    
        
-    return ListView.builder(
-      // physics: ScrollPhysics(),
-                
-                shrinkWrap: true,
-      itemCount: 1,
-      itemBuilder: (context,index) {
+   
         return GestureDetector(
           onTap: (){
             Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Bottom(img: "${widget.r["img"]}", title: "${widget.r["name"]}", data: 'European Museum details of this QrCode', lat: '${widget.r["lat"]}', lon: '${widget.r["lon"]}',)));
           },
-          child: Card(
+          child: SizedBox(
+            width: 100,
             
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20)
-              ),
-              child: Container(
-                
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: Colors.blue,
-                    width: 3.0
-                  )
+            child: Card(
+        
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)
                 ),
-            child: Column(
-              children: [
-                 Image.network("${widget.r["img"]}",
-                  fit: BoxFit.cover,
-                 ),
-                    
-                    
-                Text("${widget.r["name"]}"),
-              ],
-            ),
-          )),
+                child: Container(
+                  
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: Color(0XFFC6B26A),
+                      width: 3.0
+                    )
+                  ),
+              child: Row(
+                children: [
+                   ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                     child: Image.network("${widget.r["img"]}",
+                      fit: BoxFit.cover,
+                      width: MediaQuery.of(context).size.width * 0.5,
+                   
+                     ),
+                   ),
+                      
+                    SizedBox(width: 6,),  
+                  Flexible(child: Text("${widget.r["name"]}",style: TextStyle(fontSize: 20),)),
+                ],
+              ),
+            )),
+          ),
         );
       }, 
       // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
@@ -178,6 +183,6 @@ class _DataRetrievalState extends State<DataRetrieval> {
       //     );
       //   }),
       // );
-    });
+  
   }
 }

@@ -70,7 +70,7 @@ class QuickTour extends StatelessWidget {
         child: StreamBuilder(
           builder: (context,snapshot) {
             return ListView.builder(
-              itemCount: r.length,
+              itemCount: 1,
               itemBuilder: (BuildContext context, int index) {  
             return GestureDetector(
               onTap: (() => Navigator.of(context).push(MaterialPageRoute(builder: (context)=>QuickTourDetails(img: r["img"], tit: r["aname"], artist: r['artist'], des: r['desc'], loc: r['location'],)))),
@@ -97,12 +97,12 @@ class QuickTour extends StatelessWidget {
                               Text("Description",style: TextStyle(color: Colors.white),),
                             ],
                           ),
-                          SizedBox(width: 10,),
+                          SizedBox(width: 4,),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             // ignore: prefer_const_literals_to_create_immutables
                             children: [
-                              Text(r["artist"],style: TextStyle(color: Colors.white),),
+                              Text(r["artist"],style: TextStyle(color: Colors.white),overflow: TextOverflow.ellipsis,),
                               Text(r["location"],style: TextStyle(color: Colors.white),),
                               // Text(r["desc"],style: TextStyle(color: Colors.white),),
                             ],

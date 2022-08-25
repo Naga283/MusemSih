@@ -59,21 +59,24 @@ tts.setVolume(100.0);
               Container(
                 height: MediaQuery.of(context).size.height* 0.433,
                 width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  image: DecorationImage(image: NetworkImage(img),opacity: 150.0)
-                ),
+                // decoration: BoxDecoration(
+                //   image: DecorationImage(image: NetworkImage(img),opacity: 220.0)
+                // ),
                 child: Column(
                   // ignore: prefer_const_literals_to_create_immutables
                   children: [
-                    Text("Artist",style: TextStyle(fontSize: 30),),
+                    // Text("Artist",style: TextStyle(fontSize: 30),),
 
-                    Flexible(child: Text(des,style: TextStyle(fontSize: 15),)),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      child: Flexible(child: Text(des,style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),textAlign: TextAlign.justify,))),
 Row(
+  mainAxisAlignment: MainAxisAlignment.end,
   children: [
     Column(
       children: [
-        Text("Artist:"),
-        Text(artist),
+        Text("- Artist",style: TextStyle(fontWeight: FontWeight.bold),),
+        Text(artist,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
       ],
     )
   ],

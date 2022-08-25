@@ -2,11 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:museum/view/screens/Feyechnique/feyManTechniqueFirstPage.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:museum/Feedback/feedback.dart';
 
-import '../MusemDetailsScreen/3dModel.dart';
-import '../MusemDetailsScreen/Details.dart';
+import 'package:museum/view/screens/Notes/FirstPageNotes.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../MusemDetailsScreen/QuickTour/quickTour.dart';
 import '../MusemDetailsScreen/mousePad.dart';
 import '../MusemDetailsScreen/visitorPolicies/visitorPolicies.dart';
@@ -33,27 +32,26 @@ class MusiumDrawer extends StatelessWidget {
           DetailsOfMusiumDrawer(tit: "Book Tickets", tap: (){
              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BookTickets(name: ti, price: 100,)));
           }, ic: Icon(Icons.book_online)),
-          DetailsOfMusiumDrawer(tit: "Details", tap: (){
-             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MonumentsDetails()));
-          }, ic: Icon(Icons.add)),
+         
           DetailsOfMusiumDrawer(tit: "Quick Tour", tap: (){
              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>QuickTourScreen(tit: ti,)));
           }, ic: Icon(Icons.tour)),
-          DetailsOfMusiumDrawer(tit: "Model 3d", tap: (){
-             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Model3dScreen()));
-          }, ic: Icon(Icons.add)),
-          DetailsOfMusiumDrawer(tit: "Mouse Pad", tap: (){
-             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MousePad()));
-          }, ic: Icon(FontAwesomeIcons.airbnb)),
-          DetailsOfMusiumDrawer(tit: "Notes", tap: (){
+         
+  //         DetailsOfMusiumDrawer(tit: "Feedback", tap: (){
+  //            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>FeedbackPage(title: ti)));
+  //         }, ic: Icon(FontAwesomeIcons.edit)),
+  //         DetailsOfMusiumDrawer(tit: "Store", tap: (){
+  //            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Stores(tit: ti,)));
+  //         }, ic: Icon(FontAwesomeIcons.store)),
+  //         DetailsOfMusiumDrawer(tit: "Notes", tap: (){
            
-            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> FeymanTechniqueFirstPage()));
-          }, ic: Icon(FontAwesomeIcons.noteSticky)),
-          DetailsOfMusiumDrawer(tit: "Directions", tap: (){
-            print(lat);
-            print(lon);
-   launch('https://www.google.com/maps/search/?api=1&query=17.372038457504654, 78.4803726460252');
-          }, ic: Icon(FontAwesomeIcons.directions)),
+  //           Navigator.of(context).push(MaterialPageRoute(builder: (context)=> NotesFirstPage()));
+  //         }, ic: Icon(FontAwesomeIcons.noteSticky)),
+  //         DetailsOfMusiumDrawer(tit: "Directions", tap: (){
+  //           print(lat);
+  //           print(lon);
+  //  launch('https://www.google.com/maps/search/?api=1&query=$lat, $lon');
+  //         }, ic: Icon(FontAwesomeIcons.directions)),
           DetailsOfMusiumDrawer(tit: "Visitor Policies", tap: (){
              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>VisitorPolicies()));
           }, ic: Icon(Icons.policy)),
