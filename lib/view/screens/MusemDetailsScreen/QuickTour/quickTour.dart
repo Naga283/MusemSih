@@ -4,6 +4,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/QuickTour/quickTourDetails.dart';
+
+import '../../../../models/appColor.dart';
 class QuickTourScreen extends StatefulWidget {
   final String tit;
   const QuickTourScreen({ Key? key, required this.tit }) : super(key: key);
@@ -54,7 +56,20 @@ class _QuickTourScreenState extends State<QuickTourScreen> {
          
       return QuickTour(r: r);
       }),
-      
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          showModalBottomSheet(context: context, builder: (_){
+                  return Container(
+                    color: AppColors.appBarColor,
+                    height: MediaQuery.of(context).size.height  * 0.4,
+                    child: Image.asset("assets/images/directions/quicktournw.gif"),
+                  );
+                });
+        },
+        label: const Text('Directions'),
+        icon: const Icon(Icons.directions),
+        backgroundColor: Colors.pink,
+      ),
     );
 
   }

@@ -15,6 +15,8 @@ class TIcketsBooked extends StatefulWidget {
 }
 
 class _TIcketsBookedState extends State<TIcketsBooked> {
+  var _key = GlobalKey();
+  String a="Naga";
   var firebaseUser = FirebaseAuth.instance.currentUser;
   var firebaseCollection = FirebaseFirestore.instance.collection("Users");
   @override
@@ -111,8 +113,19 @@ return ListView.builder(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               QrImage(
+                key: _key,
+                errorStateBuilder: (cxt, err) {
+    return Container(
+      child: Center(
+        child: Text(
+          "Uh oh! Something went wrong...",
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
+  },
                semanticsLabel: "data",
-  data: "Booking Id :${snapshot.data?.docs[index]["id"]}\n Name: ${snapshot.data?.docs[index]["Name"]}\n Yes tickets are available",
+  data: a=="Naga"?"Booking Id :${snapshot.data?.docs[index]["id"]}\n Name: ${snapshot.data?.docs[index]["Name"]}\n Yes tickets are available":"Tickets are expired",
   version: QrVersions.auto,
   size: 150.0,
 ),

@@ -3,12 +3,15 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
+import 'package:museum/mapping/mapping.dart';
 import 'package:museum/view/panaroma/3dScreen.dart';
+import 'package:museum/view/panaroma/new.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/3dModel.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/mousePad.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/mustSee.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/QuickTour/quickTour.dart';
 import 'package:museum/view/screens/MusemDetailsScreen/visitorPolicies/visitorPolicies.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:text_to_speech/text_to_speech.dart';
 
 
@@ -46,7 +49,7 @@ class _MusemDetailsState extends State<MusemDetails> {
     return Scaffold(
       key: _scaffoldkey,
       endDrawer: Drawer(
-        child: MusiumDrawer(ti: widget.title, lat: widget.lat, lon: widget.lon,),
+        child: MusiumDrawer(ti: widget.title, lat: widget.lat, lon: widget.lon, ima: widget.img,),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -89,7 +92,7 @@ class _MusemDetailsState extends State<MusemDetails> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Must-See",style:TextStyle(fontSize: 22,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic)),
+                      Text("Arts",style:TextStyle(fontSize: 22,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic)),
                       TextButton(onPressed: (){
                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MustSeeScreen(tit: widget.title,)));
                       }, child: Text("Click here"))
@@ -125,8 +128,6 @@ class _MusemDetailsState extends State<MusemDetails> {
       return EventsWidget(widget: widget, rE: rEvent,);
       }),
               
-          
-            
                 ],
               ),
             ),

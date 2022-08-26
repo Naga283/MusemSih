@@ -69,7 +69,7 @@ final String des;
                   return Container(
                     color: AppColors.appBarColor,
                     height: MediaQuery.of(context).size.height  * 0.4,
-                    child: Image.asset("assets/images/directions/2.jpeg"),
+                    child: Image.asset("assets/images/directions/map1nw.gif"),
                   );
                 });
               },

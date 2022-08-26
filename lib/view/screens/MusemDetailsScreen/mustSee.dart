@@ -47,7 +47,7 @@ class _MustSeeScreenState extends State<MustSeeScreen> {
     return Scaffold(
        appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text("Must See",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 26),)
+        title: Text("Arts",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 26),)
       
       ),
       body: FirebaseAnimatedList(

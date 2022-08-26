@@ -66,4 +66,8 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    // implementation ('com.mapbox.mapboxsdk:mapbox-android-sdk:9.2.0'){
+    //     exclude group: 'group_name', module: 'module_name'
+    // }
+    // implementation 'com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.24.0-SNAPSHOT'
 }

@@ -2,8 +2,12 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:museum/models/navdropdown.dart';
+import 'package:museum/view/screens/MusemDetailsScreen/QrScannerFolder/gated.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 class QRViewExample extends StatefulWidget {
   const QRViewExample({Key? key}) : super(key: key);
@@ -14,6 +18,8 @@ class QRViewExample extends StatefulWidget {
 
 class _QRViewExampleState extends State<QRViewExample> {
   Barcode? result;
+  List mon = [];
+  var firebaseUser = FirebaseAuth.instance.currentUser;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
@@ -43,8 +49,12 @@ class _QRViewExampleState extends State<QRViewExample> {
                 children: <Widget>[
                   SizedBox(height: 10,),
                   if (result != null)
-                    Text(
-                        ' Barcode Type: ${describeEnum(result!.format)}   \n Data: ${result!.code}')
+                    Column(
+                      children: [
+                        Text(
+                            ' Barcode Type: ${describeEnum(result!.format)}   \n Data: ${result!.code}'),
+                      ],
+                    )
                   else
                     const Text('Scan a code'),
                   Row(
@@ -149,6 +159,27 @@ class _QRViewExampleState extends State<QRViewExample> {
     controller.scannedDataStream.listen((scanData) {
       setState(() {
         result = scanData;
+        print(scanData.code.toString());
+        if(scanData.code=="gate"){
+          print("scann");
+         Navigator.of(context).push(MaterialPageRoute(builder: (context)=>GateWidget(na: 'Name', d: 1,))); 
+        }
+        else if(scanData.code == "monument"){
+          mon.add("vis");
+          FirebaseFirestore.instance.collection("Users").doc(FirebaseAuth.instance.currentUser!.uid).collection("Visited").doc().set({
+         
+          "Visited Data":scanData.code!.toString(),
+          "name": "Double Statue of Mephistopheles & Margaretta"
+        }).whenComplete(() => Navigator.of(context).push(MaterialPageRoute(builder: (context)=> DropDownQr())));
+;
+        }
+        else{
+          
+        FirebaseFirestore.instance.collection("Users").doc(FirebaseAuth.instance.currentUser!.uid).collection("Qr code").doc().set({
+         
+          "data1":scanData.code!.substring(12,32).toString()
+        });
+        }
       });
     });
   }

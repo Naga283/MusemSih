@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:museum/models/appColor.dart';
 class EditDetails extends StatefulWidget {
   
   DocumentSnapshot docToEdit;
@@ -24,7 +25,7 @@ class _EditDetailsState extends State<EditDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff167885),
+        backgroundColor: AppColors.appBarColor,
         actions: [FlatButton(onPressed: (){
 
           widget.docToEdit.reference.update(

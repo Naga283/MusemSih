@@ -2,7 +2,9 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:museum/nearest_locations/home.dart';
 import 'package:museum/view/screens/BookingHistory/bookingHistory.dart';
+import 'package:museum/view/screens/visited/vistedMusuems.dart';
 class DrawerScreen extends StatefulWidget {
   const DrawerScreen({Key? key}) : super(key: key);
 
@@ -21,6 +23,12 @@ class _DrawerScreenState extends State<DrawerScreen> {
           DetailsOfDrawer(tit: 'Booking History', tap: () {  
             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BookingHistory()));
           }, ic: Icon(Icons.book),),
+          DetailsOfDrawer(tit: 'Nearest Musems', tap: () {  
+            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Home()));
+          }, ic: Icon(Icons.near_me,)),
+          DetailsOfDrawer(tit: 'Visited', tap: () {  
+            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> VisitedMuseums()));
+          }, ic: Icon(Icons.remove_red_eye)),
           DetailsOfDrawer(tit: 'Logout', tap: () { 
             setState(() {
               

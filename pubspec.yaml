@@ -53,10 +53,22 @@ dependencies:
   url_launcher: ^6.1.5
   firebase_database: ^9.1.1
   qr_flutter: ^4.0.0
+  image_picker: ^0.8.5+3
+  pointer_interceptor: ^0.9.0+1
+  kotlin_scope_function: ^1.0.2
+  # flutter_google_street_view: ^1.0.2
+  # flutter_mapbox_navigation: ^0.0.26
   font_awesome_flutter: ^10.1.0
   flutter_tts: ^3.5.1
   text_to_speech: ^0.2.3
   panorama: ^0.4.1
+  google_maps_flutter: ^2.1.4
+  http: ^0.13.4
+  location: ^4.4.0
+  json_serializable: ^6.2.0
+  build_runner: ^2.1.10
+  flutter_barcode_scanner: ^2.0.0
+  webview_flutter: ^3.0.2
 
 dev_dependencies:
   flutter_test:

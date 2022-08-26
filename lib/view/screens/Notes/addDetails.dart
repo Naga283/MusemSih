@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:museum/models/appColor.dart';
 
 class AddDetails extends StatelessWidget {
    final String uid;
@@ -19,7 +20,7 @@ class AddDetails extends StatelessWidget {
     return Scaffold(
     
       appBar: AppBar(
-        backgroundColor: Color(0xff167885),
+        backgroundColor: AppColors.appBarColor,
         actions: [FlatButton(onPressed: (){
           ref.doc(firebaseUser!.uid).collection("Notes").add({'title':title.text,
           'Description':description.text,
