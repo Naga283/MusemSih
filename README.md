@@ -8,12 +8,6 @@ In this map it shows nearby musems,and add details in visited musuems and visite
 This app scans two Qr Codes in musems one is at Gate and another one is at monument.At gate Qr code we set the direction for each and every monument and at Monument QrCode we can set the next monument directions.
 It can contains audio guide feature.
 
+## Screen Shots
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="https://user-images.githubusercontent.com/75671317/190575387-4a3fffe7-e65d-4ce4-9991-13539b5a2bd5.png" height=600 width=350>
