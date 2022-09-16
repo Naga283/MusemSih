@@ -13,9 +13,11 @@ It can contains audio guide feature.
 
 <img src="https://user-images.githubusercontent.com/75671317/190575797-ce6ad5a5-c512-476f-881d-e3af2b42dc51.png" height=600 width=350>
 
-<img src="https://user-images.githubusercontent.com/75671317/174814781-69ecf115-9064-426b-89ad-3d711f382025.png" height=600 width=350>
+<img src="https://user-images.githubusercontent.com/75671317/190576530-a0c74399-b989-4397-ac76-2de627601286.png" height=600 width=350>
 
-<img src="https://user-images.githubusercontent.com/75671317/174814781-69ecf115-9064-426b-89ad-3d711f382025.png" height=600 width=350>
+<img src="https://user-images.githubusercontent.com/75671317/190576539-dd218bef-67b4-49af-aa5e-d21e227ace23.png" height=600 width=350>
 
-<img src="https://user-images.githubusercontent.com/75671317/174814781-69ecf115-9064-426b-89ad-3d711f382025.png" height=600 width=350>
+<img src="https://user-images.githubusercontent.com/75671317/190576566-dd07288b-6df7-4b0e-b108-890d788bbb68.png" height=600 width=350>
+
+<img src="https://user-images.githubusercontent.com/75671317/190576577-d6c72885-071c-48a3-b694-12ef300ec408.png" height=600 width=350>
 
