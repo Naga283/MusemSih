@@ -11,3 +11,5 @@ It can contains audio guide feature.
 ## Screen Shots
 
 <img src="https://user-images.githubusercontent.com/75671317/190575387-4a3fffe7-e65d-4ce4-9991-13539b5a2bd5.png" height=600 width=350>
+
+<img src="https://user-images.githubusercontent.com/75671317/190575797-ce6ad5a5-c512-476f-881d-e3af2b42dc51.png" height=600 width=350>
